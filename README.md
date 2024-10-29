@@ -1,59 +1,42 @@
-# IOTstack
+# Secure IoT Solution Proof of Concept (PoC)
 
-IOTstack is a builder for docker-compose to easily make and maintain IoT stacks on the Raspberry Pi.
+## Overview
 
-## introduction to IOTstack - videos
+This project demonstrates a secure IoT solution for remote monitoring of devices, designed to meet security standards outlined in the Cyber Resilience Act (CRA). The PoC features secure data transmission, basic infrastructure, and Zero Trust principles.
 
-IOTstack changes a fair bit so YouTube videos only reflect a moment in time and tend to date quickly. These videos contain excellent overviews but you should rely more on the written documentation than anything you see in the videos.
+## Project Components
 
-Andreas Spiess:
+This project is split into two repositories:
 
-* 2023-10-01 Upgrade your Raspberry Pi to a Homelab (instead of a Raspberry Pi 5)
+1. **Raspberry Pi Repository (Current)**: Contains all Raspberry Pi setup files, including Docker configurations for `Mosquitto`, `Node-RED`, `InfluxDB`, and `Grafana`.
 
-	[![20231001](http://img.youtube.com/vi/xVq_5f0aFlw/0.jpg)](https://www.youtube.com/watch?v=xVq_5f0aFlw)
+2. **ESP32 Code Repository**: The ESP32 code for reading data from the `DHT11` sensor and transmitting it via `MQTT` is located in a separate repository:
+   - [ESP32 DHT11 Repository](https://github.com/GerruG/esp32dht11)
 
-* 2022-11-20 #443 I found an Excellent Raspberry Pi Replacement for Home Assistant / IOTstack (incl. Proxmox)
+## Security and Compliance
 
-	[![#443](http://img.youtube.com/vi/rXc_zGRYhLo/0.jpg)](https://www.youtube.com/watch?v=rXc_zGRYhLo)
+### Zero Trust Architecture
 
-* 2020-11-22 #362 Wireguard and NextCloud on a Raspberry Pi = Marvellous (Docker, IOTstack) 
+This PoC follows a **Zero Trust** approach:
+- **Network Segmentation** with `Netbird` VPN for secure data channels.
+- **Least Privilege**: Only necessary access permissions are granted.
+- **Monitoring**: `Node-RED` handles data flow, logging for security insights.
 
-	[![#362](http://img.youtube.com/vi/7Pe-Cv0tnLs/0.jpg)](https://www.youtube.com/watch?v=7Pe-Cv0tnLs)
+### Cyber Resilience Act (CRA) Compliance
 
-* 2020-09-13 #352 Raspberry Pi4 Home Automation Server (incl. Docker, OpenHAB, HASSIO, NextCloud)
+1. **Security-by-Design**: Structured for secure protocols (e.g., `TLS`, `VPN`).
+2. **Updatability**: Supports future security updates and vulnerability patches.
+3. **Vulnerability Management**: Designed for easy patching and updates.
 
-	[![#352](http://img.youtube.com/vi/KJRMjUzlHI8/0.jpg)](https://www.youtube.com/watch?v=KJRMjUzlHI8)
+## Setup
 
-* 2019-10-27 #295 Raspberry Pi Server based on Docker, with VPN, Dropbox backup, Influx, Grafana, etc: IOTstack
+1. Clone this repository and flash the ESP32 using `PlatformIO` and `ESP-IDF`.
+2. Run Docker containers on Raspberry Pi for `InfluxDB`, `Grafana`, and `Node-RED`.
+3. Set up `MQTT` broker and connect ESP32 for data transmission.
+4. Configure `Grafana` to display data from `InfluxDB`.
 
-	[![#295](http://img.youtube.com/vi/a6mjt8tWUws/0.jpg)](https://www.youtube.com/watch?v=a6mjt8tWUws)
+## Future Enhancements
 
-OneMarcFifty:
-
-* 2021-02-02 Raspberry Pi 4 Home Automation Server with IOTstack
-
-	[![20210202](http://img.youtube.com/vi/5a2qhKMetGU/0.jpg)](https://www.youtube.com/watch?v=5a2qhKMetGU)
-
-### getting started
-
-See [Getting Started](https://sensorsiot.github.io/IOTstack/Getting-Started) in the [IOTstack Wiki](https://sensorsiot.github.io/IOTstack/). It includes:
-
-* How to download the project (including constraints you need to observe).
-* How to migrate from the older gcgarner/IOTstack repository.
-* Running the menu to install Docker and set up your containers.
-* Useful Docker commands (start \& stop the stack, manage containers).
-* Stack maintenance.
-
-### reporting issues
-
-Please use the [issues](https://github.com/SensorsIot/IOTstack/issues) tab to report issues or make suggestions for new features or containers.
-
-### submitting pull requests
-
-Pull Requests are always welcome. Your contribution helps improve the project for everyone. Please see [creating Pull Requests](https://gist.github.com/Paraphraser/818bf54faf5d3b3ed08d16281f32297d) for a guide on the process.
-
-### community
-
-We have a Discord server setup for discussions: [IOTstack Discord channel](https://discord.gg/ZpKHnks) if you want to comment on features, suggest new container types, or ask the IOTstack community for help.
-
-If you use some of the tools in the project please consider donating or contributing on their projects. It doesn't have to be monetary.
+- Implement `mTLS` or `TLS` for secure `MQTT`.
+- Continue CRA compliance with vulnerability scanning and regular updates.
+- Expand Zero Trust with continuous authorization checks.
