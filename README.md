@@ -24,7 +24,7 @@ This PoC follows a **Zero Trust** approach:
 
 ### Cyber Resilience Act (CRA) Compliance
 
-1. **Security-by-Design**: Structured for secure protocols (e.g., `TLS`, `VPN`).
+1. **Security-by-Design**: Structured for secure protocols (e.g., `TLS`).
 2. **Updatability**: Supports future security updates and vulnerability patches.
 3. **Vulnerability Management**: Designed for easy patching and updates.
 
