@@ -18,7 +18,7 @@ This project is split into two repositories:
 ### Zero Trust Architecture
 
 This PoC follows a **Zero Trust** approach:
-- **Network Segmentation** with `Netbird` VPN for secure data channels.
+
 - **Least Privilege**: Only necessary access permissions are granted.
 - **Monitoring**: `Node-RED` handles data flow, logging for security insights.
 
